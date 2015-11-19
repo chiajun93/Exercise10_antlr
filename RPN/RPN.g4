@@ -5,7 +5,6 @@ grammar RPN;
   int a = 0;
   int b = 0;
   int c = 0;
-
 }
  	 
 start
@@ -15,7 +14,26 @@ start
 expr
    : INT {a =$INT.int; System.out.println("a="+a);}
      INT {b = $INT.int; System.out.println("b="+b);} 
-     '+' {val = a+b;} ;
+     '+' {val = a+b;}
+
+   | INT {a =$INT.int; System.out.println("a="+a);}
+     INT {b = $INT.int; System.out.println("b="+b);}
+     '-' {val = a-b;}
+
+   | INT {a =$INT.int; System.out.println("a="+a);}
+     INT {b = $INT.int; System.out.println("b="+b);}
+     '*' {val = a*b;}
+
+   | INT {a =$INT.int; System.out.println("a="+a);}
+     INT {b = $INT.int; System.out.println("b="+b);}
+     '/' {val = a/b;}
+
+   | INT {a =$INT.int; System.out.println("a="+a);}
+     INT {b = $INT.int; System.out.println("b="+b);}
+     '%' {val = a%b;} ;
 
 INT : [0-9]+  ;
+AND : '&&';
+OR : '||';
+NOT : '!';
 WS : [ \r\t\n]+ -> skip ;
