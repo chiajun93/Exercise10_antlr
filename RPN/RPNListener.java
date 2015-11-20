@@ -30,4 +30,14 @@ public interface RPNListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitExpr(RPNParser.ExprContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link RPNParser#eval}.
+	 * @param ctx the parse tree
+	 */
+	void enterEval(RPNParser.EvalContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link RPNParser#eval}.
+	 * @param ctx the parse tree
+	 */
+	void exitEval(RPNParser.EvalContext ctx);
 }

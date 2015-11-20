@@ -38,6 +38,18 @@ public class RPNBaseListener implements RPNListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitExpr(RPNParser.ExprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterEval(RPNParser.EvalContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitEval(RPNParser.EvalContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
