@@ -1,4 +1,7 @@
 // Generated from RPN.g4 by ANTLR 4.5
+
+    import java.util.*;
+
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
@@ -16,7 +19,8 @@ public class RPNParser extends Parser {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		T__0=1, T__1=2, T__2=3, INT=4, WS=5;
+		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T__6=7, T__7=8, T__8=9, 
+		T__9=10, T__10=11, T__11=12, INT=13, AND=14, OR=15, NOT=16, WS=17;
 	public static final int
 		RULE_start = 0, RULE_expr = 1;
 	public static final String[] ruleNames = {
@@ -24,10 +28,12 @@ public class RPNParser extends Parser {
 	};
 
 	private static final String[] _LITERAL_NAMES = {
-		null, "';'", "'+'", "'-'"
+		null, "';'", "'+'", "'-'", "'*'", "'/'", "'%'", "'<'", "'<='", "'>'", 
+		"'>='", "'=='", "'!='", null, "'&&'", "'||'", "'!'"
 	};
 	private static final String[] _SYMBOLIC_NAMES = {
-		null, null, null, null, "INT", "WS"
+		null, null, null, null, null, null, null, null, null, null, null, null, 
+		null, "INT", "AND", "OR", "NOT", "WS"
 	};
 	public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
 
@@ -75,10 +81,12 @@ public class RPNParser extends Parser {
 	public ATN getATN() { return _ATN; }
 
 
-	 	int val = 0;
+	  int val = 0;
 	  int a = 0;
 	  int b = 0;
 	  int c = 0;
+	  boolean result = false;
+	  Stack<Integer> stack = new Stack<Integer>();
 
 	public RPNParser(TokenStream input) {
 		super(input);
@@ -122,7 +130,7 @@ public class RPNParser extends Parser {
 				expr();
 				setState(5);
 				match(T__0);
-				System.out.println(val); val=0;
+				System.out.println("Val: " + val);System.out.println("Result: " + result);System.out.println("Stack: " + stack); val=0; result = false;
 				}
 				}
 				setState(10); 
@@ -166,7 +174,7 @@ public class RPNParser extends Parser {
 		ExprContext _localctx = new ExprContext(_ctx, getState());
 		enterRule(_localctx, 2, RULE_expr);
 		try {
-			setState(24);
+			setState(78);
 			switch ( getInterpreter().adaptivePredict(_input,1,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
@@ -179,7 +187,7 @@ public class RPNParser extends Parser {
 				b = (((ExprContext)_localctx).INT!=null?Integer.valueOf(((ExprContext)_localctx).INT.getText()):0); System.out.println("b="+b);
 				setState(16);
 				match(T__1);
-				val = a+b;
+				val = a+b; stack.push(val);
 				}
 				break;
 			case 2:
@@ -196,6 +204,132 @@ public class RPNParser extends Parser {
 				val = a-b;
 				}
 				break;
+			case 3:
+				enterOuterAlt(_localctx, 3);
+				{
+				setState(24);
+				((ExprContext)_localctx).INT = match(INT);
+				a =(((ExprContext)_localctx).INT!=null?Integer.valueOf(((ExprContext)_localctx).INT.getText()):0); System.out.println("a="+a);
+				setState(26);
+				((ExprContext)_localctx).INT = match(INT);
+				b = (((ExprContext)_localctx).INT!=null?Integer.valueOf(((ExprContext)_localctx).INT.getText()):0); System.out.println("b="+b);
+				setState(28);
+				match(T__3);
+				val = a*b;
+				}
+				break;
+			case 4:
+				enterOuterAlt(_localctx, 4);
+				{
+				setState(30);
+				((ExprContext)_localctx).INT = match(INT);
+				a =(((ExprContext)_localctx).INT!=null?Integer.valueOf(((ExprContext)_localctx).INT.getText()):0); System.out.println("a="+a);
+				setState(32);
+				((ExprContext)_localctx).INT = match(INT);
+				b = (((ExprContext)_localctx).INT!=null?Integer.valueOf(((ExprContext)_localctx).INT.getText()):0); System.out.println("b="+b);
+				setState(34);
+				match(T__4);
+				val = a/b;
+				}
+				break;
+			case 5:
+				enterOuterAlt(_localctx, 5);
+				{
+				setState(36);
+				((ExprContext)_localctx).INT = match(INT);
+				a =(((ExprContext)_localctx).INT!=null?Integer.valueOf(((ExprContext)_localctx).INT.getText()):0); System.out.println("a="+a);
+				setState(38);
+				((ExprContext)_localctx).INT = match(INT);
+				b = (((ExprContext)_localctx).INT!=null?Integer.valueOf(((ExprContext)_localctx).INT.getText()):0); System.out.println("b="+b);
+				setState(40);
+				match(T__5);
+				val = a%b;
+				}
+				break;
+			case 6:
+				enterOuterAlt(_localctx, 6);
+				{
+				setState(42);
+				((ExprContext)_localctx).INT = match(INT);
+				a =(((ExprContext)_localctx).INT!=null?Integer.valueOf(((ExprContext)_localctx).INT.getText()):0); System.out.println("a="+a);
+				setState(44);
+				((ExprContext)_localctx).INT = match(INT);
+				b = (((ExprContext)_localctx).INT!=null?Integer.valueOf(((ExprContext)_localctx).INT.getText()):0); System.out.println("b="+b);
+				setState(46);
+				match(T__6);
+				result = (a < b);
+				}
+				break;
+			case 7:
+				enterOuterAlt(_localctx, 7);
+				{
+				setState(48);
+				((ExprContext)_localctx).INT = match(INT);
+				a =(((ExprContext)_localctx).INT!=null?Integer.valueOf(((ExprContext)_localctx).INT.getText()):0); System.out.println("a="+a);
+				setState(50);
+				((ExprContext)_localctx).INT = match(INT);
+				b = (((ExprContext)_localctx).INT!=null?Integer.valueOf(((ExprContext)_localctx).INT.getText()):0); System.out.println("b="+b);
+				setState(52);
+				match(T__7);
+				result = (a <= b);
+				}
+				break;
+			case 8:
+				enterOuterAlt(_localctx, 8);
+				{
+				setState(54);
+				((ExprContext)_localctx).INT = match(INT);
+				a =(((ExprContext)_localctx).INT!=null?Integer.valueOf(((ExprContext)_localctx).INT.getText()):0); System.out.println("a="+a);
+				setState(56);
+				((ExprContext)_localctx).INT = match(INT);
+				b = (((ExprContext)_localctx).INT!=null?Integer.valueOf(((ExprContext)_localctx).INT.getText()):0); System.out.println("b="+b);
+				setState(58);
+				match(T__8);
+				result = (a > b);
+				}
+				break;
+			case 9:
+				enterOuterAlt(_localctx, 9);
+				{
+				setState(60);
+				((ExprContext)_localctx).INT = match(INT);
+				a =(((ExprContext)_localctx).INT!=null?Integer.valueOf(((ExprContext)_localctx).INT.getText()):0); System.out.println("a="+a);
+				setState(62);
+				((ExprContext)_localctx).INT = match(INT);
+				b = (((ExprContext)_localctx).INT!=null?Integer.valueOf(((ExprContext)_localctx).INT.getText()):0); System.out.println("b="+b);
+				setState(64);
+				match(T__9);
+				result = (a >= b);
+				}
+				break;
+			case 10:
+				enterOuterAlt(_localctx, 10);
+				{
+				setState(66);
+				((ExprContext)_localctx).INT = match(INT);
+				a =(((ExprContext)_localctx).INT!=null?Integer.valueOf(((ExprContext)_localctx).INT.getText()):0); System.out.println("a="+a);
+				setState(68);
+				((ExprContext)_localctx).INT = match(INT);
+				b = (((ExprContext)_localctx).INT!=null?Integer.valueOf(((ExprContext)_localctx).INT.getText()):0); System.out.println("b="+b);
+				setState(70);
+				match(T__10);
+				result = (a == b);
+				}
+				break;
+			case 11:
+				enterOuterAlt(_localctx, 11);
+				{
+				setState(72);
+				((ExprContext)_localctx).INT = match(INT);
+				a =(((ExprContext)_localctx).INT!=null?Integer.valueOf(((ExprContext)_localctx).INT.getText()):0); System.out.println("a="+a);
+				setState(74);
+				((ExprContext)_localctx).INT = match(INT);
+				b = (((ExprContext)_localctx).INT!=null?Integer.valueOf(((ExprContext)_localctx).INT.getText()):0); System.out.println("b="+b);
+				setState(76);
+				match(T__11);
+				result = (a != b);
+				}
+				break;
 			}
 		}
 		catch (RecognitionException re) {
@@ -210,14 +344,27 @@ public class RPNParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\7\35\4\2\t\2\4\3"+
-		"\t\3\3\2\3\2\3\2\3\2\6\2\13\n\2\r\2\16\2\f\3\3\3\3\3\3\3\3\3\3\3\3\3\3"+
-		"\3\3\3\3\3\3\3\3\3\3\5\3\33\n\3\3\3\2\2\4\2\4\2\2\34\2\n\3\2\2\2\4\32"+
-		"\3\2\2\2\6\7\5\4\3\2\7\b\7\3\2\2\b\t\b\2\1\2\t\13\3\2\2\2\n\6\3\2\2\2"+
-		"\13\f\3\2\2\2\f\n\3\2\2\2\f\r\3\2\2\2\r\3\3\2\2\2\16\17\7\6\2\2\17\20"+
-		"\b\3\1\2\20\21\7\6\2\2\21\22\b\3\1\2\22\23\7\4\2\2\23\33\b\3\1\2\24\25"+
-		"\7\6\2\2\25\26\b\3\1\2\26\27\7\6\2\2\27\30\b\3\1\2\30\31\7\5\2\2\31\33"+
-		"\b\3\1\2\32\16\3\2\2\2\32\24\3\2\2\2\33\5\3\2\2\2\4\f\32";
+		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\23S\4\2\t\2\4\3\t"+
+		"\3\3\2\3\2\3\2\3\2\6\2\13\n\2\r\2\16\2\f\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3"+
+		"\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3"+
+		"\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3"+
+		"\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3"+
+		"\3\3\3\3\3\3\3\3\3\3\3\3\5\3Q\n\3\3\3\2\2\4\2\4\2\2[\2\n\3\2\2\2\4P\3"+
+		"\2\2\2\6\7\5\4\3\2\7\b\7\3\2\2\b\t\b\2\1\2\t\13\3\2\2\2\n\6\3\2\2\2\13"+
+		"\f\3\2\2\2\f\n\3\2\2\2\f\r\3\2\2\2\r\3\3\2\2\2\16\17\7\17\2\2\17\20\b"+
+		"\3\1\2\20\21\7\17\2\2\21\22\b\3\1\2\22\23\7\4\2\2\23Q\b\3\1\2\24\25\7"+
+		"\17\2\2\25\26\b\3\1\2\26\27\7\17\2\2\27\30\b\3\1\2\30\31\7\5\2\2\31Q\b"+
+		"\3\1\2\32\33\7\17\2\2\33\34\b\3\1\2\34\35\7\17\2\2\35\36\b\3\1\2\36\37"+
+		"\7\6\2\2\37Q\b\3\1\2 !\7\17\2\2!\"\b\3\1\2\"#\7\17\2\2#$\b\3\1\2$%\7\7"+
+		"\2\2%Q\b\3\1\2&\'\7\17\2\2\'(\b\3\1\2()\7\17\2\2)*\b\3\1\2*+\7\b\2\2+"+
+		"Q\b\3\1\2,-\7\17\2\2-.\b\3\1\2./\7\17\2\2/\60\b\3\1\2\60\61\7\t\2\2\61"+
+		"Q\b\3\1\2\62\63\7\17\2\2\63\64\b\3\1\2\64\65\7\17\2\2\65\66\b\3\1\2\66"+
+		"\67\7\n\2\2\67Q\b\3\1\289\7\17\2\29:\b\3\1\2:;\7\17\2\2;<\b\3\1\2<=\7"+
+		"\13\2\2=Q\b\3\1\2>?\7\17\2\2?@\b\3\1\2@A\7\17\2\2AB\b\3\1\2BC\7\f\2\2"+
+		"CQ\b\3\1\2DE\7\17\2\2EF\b\3\1\2FG\7\17\2\2GH\b\3\1\2HI\7\r\2\2IQ\b\3\1"+
+		"\2JK\7\17\2\2KL\b\3\1\2LM\7\17\2\2MN\b\3\1\2NO\7\16\2\2OQ\b\3\1\2P\16"+
+		"\3\2\2\2P\24\3\2\2\2P\32\3\2\2\2P \3\2\2\2P&\3\2\2\2P,\3\2\2\2P\62\3\2"+
+		"\2\2P8\3\2\2\2P>\3\2\2\2PD\3\2\2\2PJ\3\2\2\2Q\5\3\2\2\2\4\fP";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {
