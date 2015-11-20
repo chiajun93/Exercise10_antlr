@@ -16,10 +16,10 @@ grammar RPN;
  	 
 start
  	 : (expr ';' {
- 	                System.out.println("Bool Stack: " + boolStack);
- 	                System.out.println("Int Stack: " + intStack);
+// 	                System.out.println("Bool Stack: " + boolStack);
+// 	                System.out.println("Int Stack: " + intStack);
  	                if(!intStack.isEmpty())
- 	                    {System.out.println("Val: " + intStack.pop());}
+ 	                    {System.out.println("Result: " + intStack.pop());}
  	                if(!boolStack.isEmpty())
  	                    {System.out.println("Result: " + boolStack.pop());}
  	                val=0;
@@ -27,20 +27,23 @@ start
  	              })+;
 
 expr
-     : (INT {
-//            System.out.println("Int: " + $INT.int);
+     : INT {
+//          System.out.println("Int: " + $INT.int);
             intStack.push($INT.int);
-            })+
-
+            }
+       INT {
+                   intStack.push($INT.int);
+                   }
         eval+ expr*
+
      | (TRUE {
-              System.out.println("Logical Operator: true");
+//              System.out.println("Logical Operator: true");
               boolStack.push(true);
               })+
         eval+ expr*
 
      | (FALSE {
-               System.out.println("Logical Operator: false");
+//               System.out.println("Logical Operator: false");
                boolStack.push(true);
                })+
        eval+ expr*;
